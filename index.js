@@ -15,7 +15,9 @@ function generateDateOfBirth() {
 }
 
 function generatePhoneNumber() {
-  return `79${Math.round(Math.random() * 1e9)}`;
+  return `79${Math.round(Math.random() * 1e11)
+    .toString()
+    .slice(0, 9)}`;
 }
 
 function determineGender(fullName) {
@@ -64,6 +66,7 @@ fs.writeFile("db.json", jsonClients, "utf8", (err) => {
   if (err) throw err;
 
   const data = require("./db.json");
+
   const csvWriter = createCsvWriter({
     path: "file.csv",
     header: require("./headers.json"),
